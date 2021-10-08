@@ -37,7 +37,10 @@ public class TilemapNavigation : MonoBehaviour
         }
         tilemap.SetColor(posGrid, Color.yellow);
         previousPosition = posGrid;
-        Debug.Log(tilemap.GetTile(posGrid));
+        TileBase tile = tilemap.GetTile(posGrid);
+        if(tile is RoadTile){
+          return;
+        }
 
         if(Input.GetMouseButtonDown(0)){
           placeTower(positionSnappedMiddle);

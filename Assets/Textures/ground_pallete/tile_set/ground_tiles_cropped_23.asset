@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
+  m_Script: {fileID: 11500000, guid: 43fb82bd0599c1e10a26047fe41a5907, type: 3}
   m_Name: ground_tiles_cropped_23
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   m_Sprite: {fileID: -2964090025498138266, guid: 8a67b8e279a721c18890e4fd7aa17c5f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
