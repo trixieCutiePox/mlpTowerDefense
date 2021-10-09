@@ -18,4 +18,12 @@ public class AngleBasedRenderer : MonoBehaviour
     {
       spriteRenderer.sprite = sprites[activeSprite];
     }
+
+    public void SetAngle(float angle) {
+      Debug.Log(angle);
+      float halfStep = 360 / 2 / sprites.Length;
+      Debug.Log(halfStep);
+      int index = Mathf.FloorToInt((angle / halfStep + 1) / 2);
+      activeSprite = index;
+    }
 }
