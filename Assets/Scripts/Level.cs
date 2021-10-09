@@ -7,6 +7,7 @@ public class Level : MonoBehaviour
 {
     public GameObject monster;
     public Wave wave;
+    public GameObject path;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,8 @@ public class Level : MonoBehaviour
     IEnumerator waveExecutor(int amount, float spacing, float delay){
       yield return new WaitForSeconds(delay);
       for(int i = 0; i < amount; i++){
-        Instantiate(monster, transform.position, Quaternion.identity);
+        GameObject monsterInstance = Instantiate(monster, transform.position, Quaternion.identity);
+        monsterInstance.GetComponent<EnemyController>().Initialize(path);
         yield return new WaitForSeconds(spacing);
       }
     }

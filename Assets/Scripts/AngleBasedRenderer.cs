@@ -25,5 +25,8 @@ public class AngleBasedRenderer : MonoBehaviour
       Debug.Log(halfStep);
       int index = Mathf.FloorToInt((angle / halfStep + 1) / 2);
       activeSprite = index;
+      if(activeSprite == sprites.Length){
+        activeSprite = 0;
+      }
     }
 }
