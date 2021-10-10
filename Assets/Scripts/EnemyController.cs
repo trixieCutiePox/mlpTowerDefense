@@ -34,6 +34,7 @@ public class EnemyController : MonoBehaviour
           target = (pathSegments[currentPathSegmentIndex + 1] - pathSegments[currentPathSegmentIndex]).normalized * additionalDistance + pathSegments[currentPathSegmentIndex];
           currentPathSegmentIndex++;
         } else {
+          GameState.instance.hp--;
           Destroy(gameObject);
         }
       }
@@ -48,6 +49,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
       if(hp <= 0) {
+        GameState.instance.cash++;
         Destroy(gameObject);
       }
     }

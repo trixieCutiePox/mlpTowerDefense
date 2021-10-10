@@ -8,9 +8,11 @@ public class TowerController : MonoBehaviour
     private AngleBasedRenderer angleBasedRenderer;
     public GameObject projectile;
     public float lastShootTime = 0;
-    // Start is called before the first frame update
+    public Transform temporaryParent;
+
     void Start()
     {
+        temporaryParent = GameObject.Find("Temporary").transform;
         angleBasedRenderer = GetComponent<AngleBasedRenderer>();
     }
 
@@ -19,7 +21,7 @@ public class TowerController : MonoBehaviour
       Debug.Log(Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg);
       float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
       angleBasedRenderer.SetAngle(180 + angle);
-      GameObject projectileInstance = Instantiate(projectile, transform.position + direction * 0.3f, Quaternion.AngleAxis(180 - angle, new Vector3(0, 0, 1)));
+      GameObject projectileInstance = Instantiate(projectile, transform.position + direction * 0.3f, Quaternion.AngleAxis(180 - angle, new Vector3(0, 0, 1)), temporaryParent);
       projectileInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y);
     }
 
