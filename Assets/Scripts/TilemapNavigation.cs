@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.EventSystems;
 
 public class TilemapNavigation : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class TilemapNavigation : MonoBehaviour
     private Vector3Int previousPosition;
     public GameObject tower;
     public Transform temporaryParent;
-    
+
+    Dictionary<Vector3Int, GameObject> towers = new Dictionary<Vector3Int, GameObject>();
+
     void Start()
     {
         temporaryParent = GameObject.Find("Temporary").transform;
@@ -18,14 +21,19 @@ public class TilemapNavigation : MonoBehaviour
         grid = gameObject.transform.parent.gameObject.GetComponent<Grid>();
     }
 
-    void placeTower(Vector3 position){
-      Instantiate(tower, position, Quaternion.identity, temporaryParent);
+    void placeTower(Vector3 position, Vector3Int posGrid){
+      GameObject towerInstance = Instantiate(tower, position, Quaternion.identity, temporaryParent);
+      towers.Add(posGrid, towerInstance);
     }
 
     // Update is called once per frame
     void Update()
     {
         if(PauseControl.gameIsPaused) return;
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+          return;
+        }
         int cost = 150;
 
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -44,15 +52,26 @@ public class TilemapNavigation : MonoBehaviour
         previousPosition = posGrid;
         TileBase tile = tilemap.GetTile(posGrid);
         if(tile == null){
+          if(Input.GetMouseButtonDown(0)){
+            GameState.instance.towerSelected = null;
+          }
           return;
         }
         if(tile is RoadTile){
+          tilemap.SetColor(posGrid, Color.red);
           return;
         }
 
-        if(Input.GetMouseButtonDown(0) && GameState.instance.cash >= cost){
-          GameState.instance.cash -= cost;
-          placeTower(positionSnappedMiddle);
+        if(Input.GetMouseButtonDown(0)){
+          if(towers.ContainsKey(posGrid)){
+            GameState.instance.towerSelected = towers[posGrid];
+            return;
+          }
+          GameState.instance.towerSelected = null;
+          if(GameState.instance.cash >= cost){
+            GameState.instance.cash -= cost;
+            placeTower(positionSnappedMiddle, posGrid);
+          }
         }
     }
 }

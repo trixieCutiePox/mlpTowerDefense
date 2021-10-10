@@ -13,6 +13,7 @@ public class GameState: MonoBehaviour
   public GameObject hpTextObject;
   public GameObject cashTextObject;
   public GameObject loseScreen;
+  public GameObject towerPanel;
 
   public GameObject levelObject;
 
@@ -40,6 +41,19 @@ public class GameState: MonoBehaviour
       _cash = value;
        cashText.text = value.ToString();
      }
+  }
+
+  private GameObject _towerSelected;
+  public GameObject towerSelected {
+    get { return _towerSelected; }
+    set {
+      _towerSelected = value;
+      if(value != null){
+        towerPanel.SetActive(true);
+      } else {
+        towerPanel.SetActive(false);
+      }
+    }
   }
   // Start is called before the first frame update
   void Start()
