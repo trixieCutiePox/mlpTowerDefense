@@ -12,7 +12,7 @@ public class TilemapNavigation : MonoBehaviour
     public GameObject tower;
     public Transform temporaryParent;
 
-    Dictionary<Vector3Int, GameObject> towers = new Dictionary<Vector3Int, GameObject>();
+    static Dictionary<Vector3Int, GameObject> towers = new Dictionary<Vector3Int, GameObject>();
 
     void Start()
     {
@@ -24,6 +24,23 @@ public class TilemapNavigation : MonoBehaviour
     void placeTower(Vector3 position, Vector3Int posGrid){
       GameObject towerInstance = Instantiate(tower, position, Quaternion.identity, temporaryParent);
       towers.Add(posGrid, towerInstance);
+    }
+
+    public static void sellTower(GameObject towerInstance){
+      //TODO vector is not nullable...(better solution?)
+      Vector3Int key = new Vector3Int(0, 0, -100);
+      foreach(KeyValuePair<Vector3Int, GameObject> entry in towers){
+        if(entry.Value == towerInstance){
+          key = entry.Key;
+        }
+      }
+
+      if(key.z != -100) {
+        GameState.instance.cash += towerInstance.GetComponent<TowerUpgrades>().sellValue;
+
+        Destroy(towerInstance);
+        towers.Remove(key);
+      }
     }
 
     // Update is called once per frame
