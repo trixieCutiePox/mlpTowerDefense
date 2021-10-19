@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class TowerSkill: MonoBehaviour
 {
     public GameObject projectile;
+    public Color projectileColor = Color.white;
     public float cooldown;
     public float range;
     protected Transform temporaryParent;
@@ -26,5 +27,21 @@ public abstract class TowerSkill: MonoBehaviour
 
     public int GetID(){
       return _id;
+    }
+
+    protected GameObject basicShot(GameObject tower, float speed){
+      Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), range, 1 << LayerMask.NameToLayer("Enemy"));
+      if(colliders.Length > 0 && Time.time > lastShootTime + cooldown) {
+        lastShootTime = Time.time;
+        Vector3 position = colliders[0].gameObject.transform.position;
+        Vector3 direction = (position - transform.position).normalized;
+        float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+        tower.GetComponent<TowerController>().shoot(angle);
+        GameObject projectileInstance = Instantiate(projectile, transform.position + direction * 0.3f, Quaternion.AngleAxis(180 - angle, new Vector3(0, 0, 1)), temporaryParent);
+        projectileInstance.GetComponent<Rigidbody2D>().velocity = (new Vector2(direction.x, direction.y)) * speed;
+        projectileInstance.GetComponent<SpriteRenderer>().color = projectileColor;
+        return projectileInstance;
+      }
+      return null;
     }
 }

@@ -8,15 +8,20 @@ public class TowerController : MonoBehaviour
 {
     public float range;
     private AngleBasedRenderer angleBasedRenderer;
+    private TowerUpgrade[] upgrades;
+    private TowerSkill[] towerSkills;
+    private TowerSkill mainSkill;
 
     void Start()
     {
         angleBasedRenderer = GetComponent<AngleBasedRenderer>();
-        foreach(Transform upgrade in transform){
-          TowerSkill[] towerSkills = upgrade.gameObject.GetComponents<TowerSkill>();
-          foreach(TowerSkill skill in towerSkills){
-            Debug.Log(skill.GetID());
-          }
+        upgrades = GetComponentsInChildren<TowerUpgrade>();
+        towerSkills = new TowerSkill[upgrades.Length];
+        mainSkill = GetComponent<TowerSkill>();
+        for(int i = 0; i < upgrades.Length; i++){
+          TowerUpgrade upgrade = upgrades[i];
+          upgrade.gameObject.TryGetComponent(out TowerSkill towerSkill);
+          towerSkills[i] = towerSkill;
         }
     }
 
@@ -24,25 +29,15 @@ public class TowerController : MonoBehaviour
       angleBasedRenderer.SetAngle(180 + angle);
     }
 
-    List<TowerSkill> getActiveSkills(){
-      List<TowerSkill> skills = new List<TowerSkill>();
-      TowerSkill skillBase = GetComponent<TowerSkill>();
-      skills.Add(skillBase);
-      foreach(Transform upgrade in transform){
-        if(upgrade.gameObject.GetComponent<TowerUpgrade>().bought){
-          if(upgrade.gameObject.TryGetComponent(out TowerSkill newSkill)){
-            skills.Add(newSkill);
-          }
-        }
-      }
-      return skills;
-    }
-
     void Update()
     {
-      List<TowerSkill> skills = getActiveSkills();
-      foreach(TowerSkill skill in skills){
-        skill.tryShoot(gameObject);
+      mainSkill.tryShoot(gameObject);
+      for(int i = 0; i < upgrades.Length; i++){
+        if(upgrades[i].bought){
+          if(towerSkills[i] != null){
+            towerSkills[i].tryShoot(gameObject);
+          }
+        }
       }
     }
 

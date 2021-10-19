@@ -1,5 +1,72 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1182829563642272279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 230731763634706351}
+  - component: {fileID: 893210365081069996}
+  - component: {fileID: 4378929082431100724}
+  m_Layer: 0
+  m_Name: fireball
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &230731763634706351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182829563642272279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2321041988762964481}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &893210365081069996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182829563642272279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a31e91a24e203a7a942c16000ed1c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  price: 100
+  bought: 0
+--- !u!114 &4378929082431100724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182829563642272279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9c1cbe4105c22aabeaa18bf396bfae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 6417363879064936145, guid: 551f38c77ac5f255e86af0c75f685bf9, type: 3}
+  projectileColor: {r: 0.6603774, g: 0.19624422, b: 0.19624422, a: 1}
+  cooldown: 3
+  range: 5
+  lastShootTime: 0
+  damage: 50
+  speed: 20
+  blastRadius: 5
+  explosion: {fileID: 5247345431054534507, guid: 79a5a733f51646fb1bfcca880e8a7a63, type: 3}
 --- !u!1 &5720446691004772130
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,13 +232,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 6417363879064936145, guid: 551f38c77ac5f255e86af0c75f685bf9, type: 3}
+  projectileColor: {r: 1, g: 1, b: 1, a: 1}
   cooldown: 1
   range: 5
   lastShootTime: 0
   pierce: 1
   damage: 5
   speed: 3
-  projectileColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &3251940605684841926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,13 +252,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 6417363879064936145, guid: 551f38c77ac5f255e86af0c75f685bf9, type: 3}
+  projectileColor: {r: 1, g: 0, b: 0, a: 1}
   cooldown: 3
   range: 5
   lastShootTime: 0
   pierce: 5
   damage: 5
   speed: 4
-  projectileColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &5838060063608972643
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   price: 200
+  bought: 0
 --- !u!1 &8983822289483676306
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +346,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 230731763634706351}
   m_Father: {fileID: 2666870973996239013}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -295,13 +364,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 6417363879064936145, guid: 551f38c77ac5f255e86af0c75f685bf9, type: 3}
+  projectileColor: {r: 1, g: 0, b: 0, a: 1}
   cooldown: 3
   range: 5
   lastShootTime: 0
   pierce: 5
   damage: 10
   speed: 4
-  projectileColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &7060800542744468032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,3 +384,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   price: 100
+  bought: 0
