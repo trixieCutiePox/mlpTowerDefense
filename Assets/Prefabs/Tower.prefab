@@ -61,6 +61,7 @@ MonoBehaviour:
   projectile: {fileID: 6417363879064936145, guid: 551f38c77ac5f255e86af0c75f685bf9, type: 3}
   projectileColor: {r: 0.6603774, g: 0.19624422, b: 0.19624422, a: 1}
   cooldown: 3
+  cooldownMultiplier: 1
   range: 5
   lastShootTime: 0
   damage: 50
@@ -234,6 +235,7 @@ MonoBehaviour:
   projectile: {fileID: 6417363879064936145, guid: 551f38c77ac5f255e86af0c75f685bf9, type: 3}
   projectileColor: {r: 1, g: 1, b: 1, a: 1}
   cooldown: 1
+  cooldownMultiplier: 1
   range: 5
   lastShootTime: 0
   pierce: 1
@@ -254,6 +256,7 @@ MonoBehaviour:
   projectile: {fileID: 6417363879064936145, guid: 551f38c77ac5f255e86af0c75f685bf9, type: 3}
   projectileColor: {r: 1, g: 0, b: 0, a: 1}
   cooldown: 3
+  cooldownMultiplier: 1
   range: 5
   lastShootTime: 0
   pierce: 5
@@ -270,6 +273,7 @@ GameObject:
   - component: {fileID: 4284745902862637867}
   - component: {fileID: 2678815630653113862}
   - component: {fileID: 3014031176482929326}
+  - component: {fileID: 2207233850169693866}
   m_Layer: 0
   m_Name: fasterShot
   m_TagString: Untagged
@@ -304,6 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modifiedSkill: {fileID: 1066184009223223036}
+  cooldownMultiplier: 0.5
 --- !u!114 &3014031176482929326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +323,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 200
   bought: 0
+--- !u!114 &2207233850169693866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5838060063608972643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d614babe277b70a86a6a44dc3c5765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modifiedSkill: {fileID: -8770893213581945511}
+  cooldownMultiplier: 0.5
 --- !u!1 &8983822289483676306
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,6 +385,7 @@ MonoBehaviour:
   projectile: {fileID: 6417363879064936145, guid: 551f38c77ac5f255e86af0c75f685bf9, type: 3}
   projectileColor: {r: 1, g: 0, b: 0, a: 1}
   cooldown: 3
+  cooldownMultiplier: 1
   range: 5
   lastShootTime: 0
   pierce: 5

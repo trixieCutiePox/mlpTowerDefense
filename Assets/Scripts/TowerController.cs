@@ -47,6 +47,6 @@ public class TowerController : MonoBehaviour
         return;
       }
       GameState.instance.cash -= towerUpgrade.price;
-      towerUpgrade.bought = true;
+      _upgrade.SendMessage("buy");
     }
 }

@@ -5,8 +5,9 @@ using UnityEngine;
 public class SkillModifier : MonoBehaviour
 {
     public TowerSkill modifiedSkill;
+    public float cooldownMultiplier = 1;
 
-    void Start(){
-      Debug.Log(modifiedSkill.GetID());
+    public void buy(){
+      modifiedSkill.cooldownMultiplier *= cooldownMultiplier;
     }
 }

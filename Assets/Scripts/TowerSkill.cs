@@ -7,6 +7,8 @@ public abstract class TowerSkill: MonoBehaviour
     public GameObject projectile;
     public Color projectileColor = Color.white;
     public float cooldown;
+    [HideInInspector]
+    public float cooldownMultiplier = 1;
     public float range;
     protected Transform temporaryParent;
     private static int nextId = 0;
@@ -31,7 +33,7 @@ public abstract class TowerSkill: MonoBehaviour
 
     protected GameObject basicShot(GameObject tower, float speed){
       Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), range, 1 << LayerMask.NameToLayer("Enemy"));
-      if(colliders.Length > 0 && Time.time > lastShootTime + cooldown) {
+      if(colliders.Length > 0 && Time.time > lastShootTime + cooldown * cooldownMultiplier) {
         lastShootTime = Time.time;
         Vector3 position = colliders[0].gameObject.transform.position;
         Vector3 direction = (position - transform.position).normalized;
