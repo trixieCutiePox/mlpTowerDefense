@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 230731763634706351}
   - component: {fileID: 893210365081069996}
   - component: {fileID: 4378929082431100724}
+  - component: {fileID: 4416592578723297057}
   m_Layer: 0
   m_Name: fireball
   m_TagString: Untagged
@@ -68,6 +69,24 @@ MonoBehaviour:
   speed: 20
   blastRadius: 5
   explosion: {fileID: 5247345431054534507, guid: 79a5a733f51646fb1bfcca880e8a7a63, type: 3}
+--- !u!114 &4416592578723297057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182829563642272279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cffaeef5b5feaa030868926120bd8b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets:
+  - {r: 1, g: 1, b: 1, a: 0}
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 0.41509432, g: 0.06069775, b: 0.06069775, a: 0}
+  - {r: 1, g: 0.9111888, b: 0, a: 0}
+  towerColor: {fileID: 248278825483445694}
 --- !u!1 &5720446691004772130
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,7 +102,7 @@ GameObject:
   - component: {fileID: 7282796533836815825}
   - component: {fileID: 7512272864000558252}
   - component: {fileID: -8770893213581945511}
-  - component: {fileID: 3251940605684841926}
+  - component: {fileID: 248278825483445694}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -126,7 +145,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b26c20653dd0492e7a6553ea1a747438, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -241,7 +260,7 @@ MonoBehaviour:
   pierce: 1
   damage: 5
   speed: 3
---- !u!114 &3251940605684841926
+--- !u!114 &248278825483445694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,18 +269,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 5720446691004772130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 526bb3f10f0bb29d8a4fa39c70639e3c, type: 3}
+  m_Script: {fileID: 11500000, guid: cbd10cda9966c7497b134e880f38c845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 6417363879064936145, guid: 551f38c77ac5f255e86af0c75f685bf9, type: 3}
-  projectileColor: {r: 1, g: 0, b: 0, a: 1}
-  cooldown: 3
-  cooldownMultiplier: 1
-  range: 5
-  lastShootTime: 0
-  pierce: 5
-  damage: 5
-  speed: 4
+  sources:
+  - {r: 1, g: 1, b: 1, a: 0}
+  - {r: 1, g: 0.05, b: 0.8, a: 0}
+  - {r: 1, g: 0.9, b: 0.3, a: 0}
+  - {r: 0.36078432, g: 0, b: 0.6784314, a: 0}
+  targets:
+  - {r: 1, g: 1, b: 1, a: 0}
+  - {r: 1, g: 0, b: 0.8365736, a: 0}
+  - {r: 0.99178326, g: 1, b: 0, a: 0}
+  - {r: 0.4581761, g: 0.003921577, b: 0.98039216, a: 0}
 --- !u!1 &5838060063608972643
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,6 +294,7 @@ GameObject:
   - component: {fileID: 2678815630653113862}
   - component: {fileID: 3014031176482929326}
   - component: {fileID: 2207233850169693866}
+  - component: {fileID: 9129338113679348348}
   m_Layer: 0
   m_Name: fasterShot
   m_TagString: Untagged
@@ -337,6 +358,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modifiedSkill: {fileID: -8770893213581945511}
   cooldownMultiplier: 0.5
+--- !u!114 &9129338113679348348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5838060063608972643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cffaeef5b5feaa030868926120bd8b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets:
+  - {r: 1, g: 1, b: 1, a: 0}
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 0.9595409, g: 0.972549, b: 0, a: 0}
+  - {r: 0.39726543, g: 0, b: 1, a: 0}
+  towerColor: {fileID: 248278825483445694}
 --- !u!1 &8983822289483676306
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,6 +387,7 @@ GameObject:
   - component: {fileID: 2321041988762964481}
   - component: {fileID: 1066184009223223036}
   - component: {fileID: 7060800542744468032}
+  - component: {fileID: 3607885756692410167}
   m_Layer: 0
   m_Name: morePowerfullShot
   m_TagString: Untagged
@@ -405,3 +445,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 100
   bought: 0
+--- !u!114 &3607885756692410167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983822289483676306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cffaeef5b5feaa030868926120bd8b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets:
+  - {r: 1, g: 1, b: 1, a: 0}
+  - {r: 0, g: 1, b: 1, a: 0}
+  - {r: 1, g: 0, b: 0.809783, a: 0}
+  - {r: 1, g: 0, b: 0, a: 0}
+  towerColor: {fileID: 248278825483445694}
