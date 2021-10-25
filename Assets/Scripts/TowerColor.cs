@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Text;
 
+//maybe somehow use this instead https://docs.unity3d.com/Packages/com.unity.shadergraph@6.9/manual/Replace-Color-Node.html
 public class TowerColor : MonoBehaviour
 {
     private Material material;
@@ -89,13 +91,18 @@ public class TowerColor : MonoBehaviour
     }
 
     void Start() {
-      SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-      material = new Material(spriteRenderer.material);
-      spriteRenderer.material = material;
+      if(TryGetComponent(out SpriteRenderer spriteRenderer)){
+        material = spriteRenderer.material;
+      }
+      if(TryGetComponent(out Image image)){
+        material = image.material;
+      }
       //findX(new float[2,2] {{0,1},{2,3}}, new float[2]{2,8});
     }
 
     void Update() {
+      if(sources.Length != 4) return;
+      if(targets.Length != 4) return;
       Matrix4x4 m = new Matrix4x4();
       for(int i = 0; i < 4; i++){
         float[,] A = new float[4,4];
