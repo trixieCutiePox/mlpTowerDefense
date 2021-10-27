@@ -12,7 +12,7 @@ public class TilemapNavigation : MonoBehaviour
     public GameObject tower;
     public Transform temporaryParent;
 
-    static Dictionary<Vector3Int, GameObject> towers = new Dictionary<Vector3Int, GameObject>();
+    public static Dictionary<Vector3Int, GameObject> towers = new Dictionary<Vector3Int, GameObject>();
 
     void Start()
     {

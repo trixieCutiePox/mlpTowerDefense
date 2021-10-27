@@ -12,14 +12,43 @@ public class GameState: MonoBehaviour
 
   public GameObject hpTextObject;
   public GameObject cashTextObject;
-  public GameObject loseScreen;
+  public GameObject restartScreen;
   public GameObject towerPanel;
+  public GameObject startButton;
 
   public GameObject levelObject;
 
   private Text hpText;
   private Text cashText;
   private Level level;
+
+  public int currentLevel {get; set;}
+
+  private bool _win;
+  public bool win {
+    get {return _win;}
+    set {
+      _win = value;
+      if(value){
+        restartScreen.transform.Find("RestartText").GetComponent<Text>().text = "You won!";
+        restartScreen.SetActive(true);
+        PauseControl.PauseGame(true);
+      }
+    }
+  }
+
+  private bool _levelInProgress;
+  public bool levelInProgress {
+    get { return _levelInProgress; }
+    set {
+      _levelInProgress = value;
+      if(value) {
+        startButton.SetActive(false);
+      } else {
+        startButton.SetActive(true);
+      }
+    }
+  }
 
   private int _hp;
   public int hp {
@@ -28,7 +57,8 @@ public class GameState: MonoBehaviour
       _hp = value;
        hpText.text = value.ToString();
        if(value <= 0) {
-         loseScreen.SetActive(true);
+         restartScreen.transform.Find("RestartText").GetComponent<Text>().text = "You lost";
+         restartScreen.SetActive(true);
          PauseControl.PauseGame(true);
        }
      }
@@ -79,14 +109,18 @@ public class GameState: MonoBehaviour
   }
 
   public void Restart() {
-    loseScreen.SetActive(false);
+    restartScreen.SetActive(false);
     hp = startingHp;
     cash = startingCash;
+    win = false;
+    currentLevel = 0;
+    towerSelected = null;
     foreach (Transform child in GameObject.Find("Temporary").transform) {
       Destroy(child.gameObject);
     }
     level.Restart();
     PauseControl.PauseGame(false);
+    TilemapNavigation.towers.Clear();
   }
 
 
