@@ -14,13 +14,13 @@ public class SellButton : MonoBehaviour
     {
         GameObject tower = GameState.instance.towerSelected;
         if(tower != null) {
-          TowerUpgrades towerUpgrades = tower.GetComponent<TowerUpgrades>();
-          text.text = $"Sell for {towerUpgrades.sellValue}";
+          TowerController towerController = tower.GetComponent<TowerController>();
+          text.text = $"Sell for {towerController.sellValue}";
         }
     }
 
     public void Sell(){
-      TilemapNavigation.sellTower(GameState.instance.towerSelected);
+      TilemapController.sellTower(GameState.instance.towerSelected);
       GameState.instance.towerSelected = null;
     }
 }

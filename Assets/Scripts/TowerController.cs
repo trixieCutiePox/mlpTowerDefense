@@ -12,8 +12,12 @@ public class TowerController : MonoBehaviour
     private TowerSkill[] towerSkills;
     private TowerSkill mainSkill;
 
+    public int value;
+    public int sellValue;
+
     void Start()
     {
+        sellValue = value / 2;
         angleBasedRenderer = GetComponent<AngleBasedRenderer>();
         upgrades = GetComponentsInChildren<TowerUpgrade>();
         towerSkills = new TowerSkill[upgrades.Length];
@@ -47,6 +51,8 @@ public class TowerController : MonoBehaviour
         return;
       }
       GameState.instance.cash -= towerUpgrade.price;
+      value += towerUpgrade.price;
+      sellValue = value / 2;
       _upgrade.SendMessage("buy");
     }
 }

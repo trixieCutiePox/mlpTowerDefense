@@ -120,7 +120,7 @@ public class GameState: MonoBehaviour
     }
     level.Restart();
     PauseControl.PauseGame(false);
-    TilemapNavigation.towers.Clear();
+    TilemapController.towers.Clear();
   }
 
 

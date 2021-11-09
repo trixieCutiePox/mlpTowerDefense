@@ -61,12 +61,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 6417363879064936145, guid: 551f38c77ac5f255e86af0c75f685bf9, type: 3}
   projectileColor: {r: 0.6603774, g: 0.19624422, b: 0.19624422, a: 1}
-  cooldown: 3
+  cooldown: 2
   cooldownMultiplier: 1
   range: 5
   lastShootTime: 0
-  damage: 50
-  speed: 20
+  damage: 5
+  speed: 6
   blastRadius: 5
   explosion: {fileID: 5247345431054534507, guid: 79a5a733f51646fb1bfcca880e8a7a63, type: 3}
 --- !u!114 &4416592578723297057
@@ -100,7 +100,6 @@ GameObject:
   - component: {fileID: 115808677493917639}
   - component: {fileID: 3548995825482802353}
   - component: {fileID: 7282796533836815825}
-  - component: {fileID: 7512272864000558252}
   - component: {fileID: -8770893213581945511}
   - component: {fileID: 248278825483445694}
   m_Layer: 0
@@ -212,6 +211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 10
+  value: 150
+  sellValue: 0
 --- !u!114 &7282796533836815825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,20 +226,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: f8968aaf1eabe5f1990c401d2963237f, type: 3}
---- !u!114 &7512272864000558252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5720446691004772130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1d2b1473f79cbbbca208da03c31cfcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 150
-  sellValue: 0
 --- !u!114 &-8770893213581945511
 MonoBehaviour:
   m_ObjectHideFlags: 0

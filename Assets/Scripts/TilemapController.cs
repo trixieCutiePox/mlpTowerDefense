@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
 
-public class TilemapNavigation : MonoBehaviour
+public class TilemapController : MonoBehaviour
 {
     private Tilemap tilemap;
     private Grid grid;
     private Vector3Int previousPosition;
+    private int cost;
+
     public GameObject tower;
     public Transform temporaryParent;
 
@@ -19,6 +21,7 @@ public class TilemapNavigation : MonoBehaviour
         temporaryParent = GameObject.Find("Temporary").transform;
         tilemap = GetComponent<Tilemap>();
         grid = gameObject.transform.parent.gameObject.GetComponent<Grid>();
+        cost = tower.GetComponent<TowerController>().value;
     }
 
     void placeTower(Vector3 position, Vector3Int posGrid){
@@ -36,7 +39,7 @@ public class TilemapNavigation : MonoBehaviour
       }
 
       if(key.z != -100) {
-        GameState.instance.cash += towerInstance.GetComponent<TowerUpgrades>().sellValue;
+        GameState.instance.cash += towerInstance.GetComponent<TowerController>().sellValue;
 
         Destroy(towerInstance);
         towers.Remove(key);
@@ -51,7 +54,6 @@ public class TilemapNavigation : MonoBehaviour
         {
           return;
         }
-        int cost = 150;
 
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int posGrid = grid.WorldToCell(pos);
