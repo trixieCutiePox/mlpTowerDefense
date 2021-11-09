@@ -9,9 +9,11 @@ public class EnemyController : MonoBehaviour
 
     private int currentPathSegmentIndex = 0;
     private Vector2[] pathSegments;
-    private Rigidbody2D rigidbody2D;
+    //new is here to remove warning
+    //without declaring rigidbody2D here it tells that memeber rigidbody2D is depracated
+    private new Rigidbody2D rigidbody2D;
     private AngleBasedRenderer angleBasedRenderer;
-    // Start is called before the first frame update
+
     public void Initialize(GameObject path)
     {
       pathSegments = new Vector2[path.transform.childCount];
@@ -45,7 +47,7 @@ public class EnemyController : MonoBehaviour
       rigidbody2D.MovePosition(target);
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
       if(hp <= 0) {
